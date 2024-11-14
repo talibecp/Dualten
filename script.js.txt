@@ -1,0 +1,84 @@
+function convertTemperature() {
+    let temperature = parseFloat(document.getElementById("temperature").value);
+    let fromUnit = document.getElementById("from-unit").value;
+    let toUnit = document.getElementById("to-unit").value;
+    let convertedValue;
+    let outputUnit;
+
+    if (isNaN(temperature)) {
+        alert("Please enter a valid number for temperature.");
+        return;
+    }
+
+    // Celsius to other units
+    if (fromUnit === "celsius") {
+        if (toUnit === "fahrenheit") {
+            convertedValue = (temperature * 9 / 5) + 32;
+            outputUnit = "°F";
+        } else if (toUnit === "kelvin") {
+            convertedValue = temperature + 273.15;
+            outputUnit = "K";
+        } else if (toUnit === "rankine") {
+            convertedValue = (temperature + 273.15) * 9 / 5;
+            outputUnit = "°R";
+        } else {
+            convertedValue = temperature;
+            outputUnit = "°C";
+        }
+    }
+
+    // Fahrenheit to other units
+    else if (fromUnit === "fahrenheit") {
+        if (toUnit === "celsius") {
+            convertedValue = (temperature - 32) * 5 / 9;
+            outputUnit = "°C";
+        } else if (toUnit === "kelvin") {
+            convertedValue = (temperature - 32) * 5 / 9 + 273.15;
+            outputUnit = "K";
+        } else if (toUnit === "rankine") {
+            convertedValue = temperature + 459.67;
+            outputUnit = "°R";
+        } else {
+            convertedValue = temperature;
+            outputUnit = "°F";
+        }
+    }
+
+    // Kelvin to other units
+    else if (fromUnit === "kelvin") {
+        if (toUnit === "celsius") {
+            convertedValue = temperature - 273.15;
+            outputUnit = "°C";
+        } else if (toUnit === "fahrenheit") {
+            convertedValue = (temperature - 273.15) * 9 / 5 + 32;
+            outputUnit = "°F";
+        } else if (toUnit === "rankine") {
+            convertedValue = temperature * 9 / 5;
+            outputUnit = "°R";
+        } else {
+            convertedValue = temperature;
+            outputUnit = "K";
+        }
+    }
+
+    // Rankine to other units
+    else if (fromUnit === "rankine") {
+        if (toUnit === "celsius") {
+            convertedValue = (temperature - 491.67) * 5 / 9;
+            outputUnit = "°C";
+        } else if (toUnit === "fahrenheit") {
+            convertedValue = temperature - 459.67;
+            outputUnit = "°F";
+        } else if (toUnit === "kelvin") {
+            convertedValue = temperature * 5 / 9;
+            outputUnit = "K";
+        } else {
+            convertedValue = temperature;
+            outputUnit = "°R";
+        }
+    }
+
+    // Display the result
+    document.getElementById("converted-value").textContent = convertedValue.toFixed(2);
+    document.getElementById("output-unit").textContent = outputUnit;
+}
